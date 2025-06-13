@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Help - Flexory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 5px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.1);
+        }
+
+        .section h2 {
+            color: #44a08d;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::before {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .contact-main {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-main h2 {
+            color: white;
+        }
+
+        .contact-main h2::before {
+            content: '📧';
+        }
+
+        .contact-email {
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        /* Specific section styles */
+        .support { background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); border-left-color: #28a745; }
+        .support h2 { color: #155724; }
+        .support h2::before { content: '💬'; }
+
+        .bugs { background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border-left-color: #dc3545; }
+        .bugs h2 { color: #721c24; }
+        .bugs h2::before { content: '🐛'; }
+
+        .features { background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left-color: #fdcb6e; }
+        .features h2 { color: #e17055; }
+        .features h2::before { content: '💡'; }
+
+        .business { background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%); border-left-color: #17a2b8; }
+        .business h2 { color: #0c5460; }
+        .business h2::before { content: '🏢'; }
+
+        .feedback { background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%); border-left-color: #6c757d; }
+        .feedback h2 { color: #495057; }
+        .feedback h2::before { content: '⭐'; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .section {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+            
+            .section h2 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-email {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .section h2 {
+                font-size: 1.1rem;
+            }
+            
+            .contact-email {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #44a08d 0%, #4ecdc4 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Contact & Help</h1>
+            <div class="subtitle">Flexory: Workout Tracker</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight">
+                <p><strong>Need help or have questions?</strong> We're here to assist you! Whether you need technical support, want to report a bug, or have suggestions for new features, don't hesitate to reach out to our team.</p>
+            </div>
+
+            <div class="section contact-main">
+                <h2>Get in Touch</h2>
+                <p>For all inquiries, support requests, and feedback:</p>
+                <a href="mailto:contact@flexoryapp.org" class="contact-email">contact@flexoryapp.org</a>
+                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">We typically respond within 24-48 hours during business days.</p>
+            </div>
+
+            <div class="section support">
+                <h2>Technical Support</h2>
+                <p>Having trouble with the app? We're here to help! When contacting us for technical support, please include:</p>
+                <ul>
+                    <li>Your device type and operating system version</li>
+                    <li>App version you're using</li>
+                    <li>Detailed description of the issue</li>
+                    <li>Steps to reproduce the problem</li>
+                    <li>Screenshots if applicable</li>
+                </ul>
+                <p>This information helps us resolve your issue faster and more efficiently.</p>
+            </div>
+
+            <div class="section bugs">
+                <h2>Report Bugs</h2>
+                <p>Found a bug or something not working as expected? We appreciate your help in making Flexory better! Please report any issues you encounter, including:</p>
+                <ul>
+                    <li>App crashes or freezing</li>
+                    <li>Data not saving correctly</li>
+                    <li>Features not working properly</li>
+                    <li>Display or interface issues</li>
+                    <li>Performance problems</li>
+                </ul>
+            </div>
+
+            <div class="section features">
+                <h2>Feature Requests</h2>
+                <p>Have an idea for a new feature or improvement? We love hearing from our users! Share your suggestions for:</p>
+                <ul>
+                    <li>New workout tracking features</li>
+                    <li>UI/UX improvements</li>
+                    <li>Integration with other fitness apps</li>
+                    <li>Social features and sharing options</li>
+                    <li>Advanced analytics and reporting</li>
+                </ul>
+                <p>Your feedback helps shape the future of Flexory!</p>
+            </div>
+
+            <div class="section feedback">
+                <h2>General Feedback</h2>
+                <p>We value your opinion! Whether you want to share what you love about Flexory or suggest areas for improvement, we're always eager to hear from our community.</p>
+                <p>Your feedback helps us understand how we can make Flexory the best workout tracking app possible.</p>
+            </div>
+
+            <div class="section business">
+                <h2>Business Inquiries</h2>
+                <p>For partnership opportunities, press inquiries, or other business-related matters, please reach out to us at our main contact email. We'll make sure your message gets to the right team member.</p>
+            </div>
+
+            <div class="section">
+                <h2>Privacy & Data</h2>
+                <p>Questions about how we handle your data? Check out our Privacy Policy or contact us directly. We're committed to transparency about our data practices and protecting your privacy.</p>
+                <p>For data deletion requests or other privacy-related inquiries, please contact us with "Privacy Request" in the subject line.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Flexory. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
